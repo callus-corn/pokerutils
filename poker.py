@@ -111,7 +111,7 @@ straight_list.append(prime[ 9]*prime[10]*prime[11]*prime[12]*prime[13])
 straight_list.append(prime[10]*prime[11]*prime[12]*prime[13]*prime[14])
 
 def deck_new():
-    return master_deck
+    return master_deck.copy()
 
 def judge(cards):
     pair_cards = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -285,6 +285,11 @@ def judge(cards):
 
 def pick(deck):
     return deck[0], deck[1:]
+
+def select(deck, card_text):
+    card = text_to_card(card_text)
+    deck.remove(card)
+    return card, deck
 
 def text_to_card(text):
     suit = text[0]
