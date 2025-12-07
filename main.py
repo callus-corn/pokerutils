@@ -42,6 +42,8 @@ def win_rate_check():
     dealer_board.append(card_7)
     """
 
+    start = time.time()
+
     hand_1_win_count = 0
     hand_2_win_count = 0
     count = 0
@@ -66,6 +68,10 @@ def win_rate_check():
     hole_cards_2_text = poker.cards_to_text(hole_cards_2, " ")
     print(hole_cards_1_text + ":", round(100 * (hand_1_win_count / count)), "%")
     print(hole_cards_2_text + ":", round(100 * (hand_2_win_count / count)), "%")
+
+    end = time.time()
+    process_time = end - start
+    print(process_time)
 
 def random_check():
     for i in range(100):
@@ -108,5 +114,5 @@ def random_check():
             print("you win")
         print("")
 
-#win_rate_check()
-all_check()
+win_rate_check()
+#all_check()

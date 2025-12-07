@@ -6739,25 +6739,23 @@ master_deck = [
 def deck_new():
     return master_deck.copy()
 
-def judge_5(c1,c2,c3,c4,c5):
-    rank = -1
-
-    is_flash = c1 & c2 & c3 & c4 & c5 & suit_mask
-    if is_flash:
-        flash_index = (c1 | c2 | c3 | c4 | c5) >> rank_offset_shift
-        rank = flushe_rank[flash_index]
-    else:
-        rank_index = (c1 & 0xff) * (c2 & 0xff) * (c3 & 0xff) * (c4 & 0xff) * (c5 & 0xff)
-        rank = hand_rank[rank_index]
-
-    return rank
-
 def judge(cards):
     rank = over_nut_low
     for index in index_list:
-        judge_rank = judge_5(cards[index[0]], cards[index[1]], cards[index[2]], cards[index[3]], cards[index[4]])
-        if judge_rank < rank:
-            rank = judge_rank
+        c1 = cards[index[0]]
+        c2 = cards[index[1]]
+        c3 = cards[index[2]]
+        c4 = cards[index[3]]
+        c5 = cards[index[4]]
+
+        is_flash = c1 & c2 & c3 & c4 & c5 & suit_mask
+        if is_flash:
+            flash_index = (c1 | c2 | c3 | c4 | c5) >> rank_offset_shift
+            five_rank = flushe_rank[flash_index]
+        else:
+            rank_index = (c1 & 0xff) * (c2 & 0xff) * (c3 & 0xff) * (c4 & 0xff) * (c5 & 0xff)
+            five_rank = hand_rank[rank_index]
+        rank = min(rank, five_rank)
     return rank
 
 def pick(deck):
