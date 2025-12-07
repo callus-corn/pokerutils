@@ -13,18 +13,27 @@ def win_rate_check():
     hole_cards_1.append(card_1)
     hole_cards_1.append(card_2)
     
-    card_3, deck = poker.select(deck, "hA")
-    card_4, deck = poker.select(deck, "sA")
+    card_3, deck = poker.select(deck, "h2")
+    card_4, deck = poker.select(deck, "s3")
     
     hole_cards_2 = []
     hole_cards_2.append(card_3)
     hole_cards_2.append(card_4)
     
-    win_count = 0
-    lose_count = 0
+    card_5, deck = poker.select(deck, "hA")
+    card_6, deck = poker.select(deck, "sA")
+    card_7, deck = poker.select(deck, "sK")
+
+    dealer_board = []
+    dealer_board.append(card_5)
+    dealer_board.append(card_6)
+    dealer_board.append(card_7)
+
+    hand_1_win_count = 0
+    hand_2_win_count = 0
     count = 0
-    for comb in itertools.combinations(deck, 5):
-        board = []
+    for comb in itertools.combinations(deck, 5 - len(dealer_board)):
+        board = dealer_board.copy()
         for card in comb:
             board.append(card)
     
@@ -35,12 +44,13 @@ def win_rate_check():
         hand_2 = poker.judge(seven_cards_2)
     
         if hand_1 < hand_2:
-            win_count += 1
-        else:
-            lose_count += 1
+            hand_1_win_count += 1
+        elif hand_2 < hand_1:
+            hand_2_win_count += 1
         count += 1
     
-    print(win_count, lose_count, win_count / count)
+    print("player 1:", round(100 * (hand_1_win_count / count)), "%")
+    print("player 2:", round(100 * (hand_2_win_count / count)), "%")
 
 def random_check():
     for i in range(100):
