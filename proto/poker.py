@@ -6736,8 +6736,95 @@ master_deck = [
     ca, da, ha, sa,
 ]
 
+utg_range = [
+    # AA
+    [ca, da], [ca, ha], [ca, sa], [da, ha], [da, sa], [ha, sa],
+    # KK
+    [ck, dk], [ck, hk], [ck, sk], [dk, hk], [dk, sk], [hk, sk],
+    # QQ
+    [cq, dq], [cq, hq], [cq, sq], [dq, hq], [dq, sq], [hq, sq],
+    # JJ
+    [cj, dj], [cj, hj], [cj, sj], [dj, hj], [dj, sj], [hj, sj],
+    # TT
+    [ct, dt], [ct, ht], [ct, st], [dt, ht], [dt, st], [ht, st],
+    # 99
+    [c9, d9], [c9, h9], [c9, s9], [d9, h9], [d9, s9], [h9, s9],
+    # 88
+    [c8, d8], [c8, h8], [c8, s8], [d8, h8], [d8, s8], [h8, s8],
+    # 77
+    [c7, d7], [c7, h7], [c7, s7], [d7, h7], [d7, s7], [h7, s7],
+    # 66
+    [c6, d6], [c6, h6], [c6, s6], [d6, h6], [d6, s6], [h6, s6],
+    # AKs - A2s
+    [ca, ck], [ca, cq], [ca, cj], [ca, ct], [ca, c9], [ca, c8], [ca, c7], [ca, c6], [ca, c5], [ca, c4], [ca, c3], [ca, c2],
+    [da, dk], [da, dq], [da, dj], [da, dt], [da, d9], [da, d8], [da, d7], [da, d6], [da, d5], [da, d4], [da, d3], [da, d2],
+    [ha, hk], [ha, hq], [ha, hj], [ha, ht], [ha, h9], [ha, h8], [ha, h7], [ha, h6], [ha, h5], [ha, h4], [ha, h3], [ha, h2],
+    [sa, sk], [sa, sq], [sa, sj], [sa, st], [sa, s9], [sa, s8], [sa, s7], [sa, s6], [sa, s5], [sa, s4], [sa, s3], [sa, s2],
+    # KQs - KTs
+    [ck, cq], [ck, cj], [ck, ct],
+    [dk, dq], [dk, dj], [dk, dt],
+    [hk, hq], [hk, hj], [hk, ht],
+    [sk, sq], [sk, sj], [sk, st],
+    # QJs - QTs
+    [cq, cj], [cq, ct],
+    [dq, dj], [dq, dt],
+    [hq, hj], [hq, ht],
+    [sq, sj], [sq, st],
+    # JTs
+    [cj, ct],
+    [dj, dt],
+    [hj, ht],
+    [sj, st],
+    # T9s
+    [ct, c9],
+    [dt, d9],
+    [ht, h9],
+    [st, s9],
+    # 98s
+    [c9, c8],
+    [d9, d8],
+    [h9, h8],
+    [s9, s8],
+    # AKo - ATo
+    [ca, dk], [ca, hk], [ca, sk],
+    [da, ck], [da, hk], [da, sk],
+    [ha, ck], [ha, dk], [ha, sk],
+    [sa, ck], [sa, dk], [sa, hk],
+    [ca, dq], [ca, hq], [ca, sq],
+    [da, cq], [da, hq], [da, sq],
+    [ha, cq], [ha, dq], [ha, sq],
+    [sa, cq], [sa, dq], [sa, hq],
+    [ca, dj], [ca, hj], [ca, sj],
+    [da, cj], [da, hj], [da, sj],
+    [ha, cj], [ha, dj], [ha, sj],
+    [sa, cj], [sa, dj], [sa, hj],
+    [ca, dt], [ca, ht], [ca, st],
+    [da, ct], [da, ht], [da, st],
+    [ha, ct], [ha, dt], [ha, st],
+    [sa, ct], [sa, dt], [sa, ht],
+    # KQo
+    [ck, dq], [ck, hq], [ck, sq],
+    [dk, cq], [dk, hq], [dk, sq],
+    [hk, cq], [hk, dq], [hk, sq],
+    [sk, cq], [sk, dq], [sk, hq],
+]
+
+def utg_range_new():
+    return utg_range.copy()
+
 def deck_new():
     return master_deck.copy()
+
+def judge_5(c1, c2, c3, c4, c5):
+    rank = over_nut_low
+    is_flash = c1 & c2 & c3 & c4 & c5 & suit_mask
+    if is_flash:
+        flash_index = (c1 | c2 | c3 | c4 | c5) >> rank_offset_shift
+        rank = flushe_rank[flash_index]
+    else:
+        rank_index = (c1 & 0xff) * (c2 & 0xff) * (c3 & 0xff) * (c4 & 0xff) * (c5 & 0xff)
+        rank = hand_rank[rank_index]
+    return rank
 
 def judge(cards):
     rank = over_nut_low
@@ -6884,7 +6971,7 @@ def text_to_card(text):
 
 def text_to_cards(text):
     cards = []
-    for i in range(7):
+    for i in range(len(text) >> 1):
         cards.append(text_to_card(text[i*2:i*2+2]))
     return cards
 
