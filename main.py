@@ -1,33 +1,46 @@
 import random
 import poker
 import itertools
+import time
 
+def all_check():
+    deck = poker.deck_new()
+
+    start = time.time()
+    for comb in itertools.combinations(deck, 7):
+        board = []
+        for card in comb:
+            board.append(card)
+    
+        hand = poker.judge(board)
+    end = time.time()
+    process_time = start - end
+    print(process_time)
 
 def win_rate_check():
     deck = poker.deck_new()
-    
+
+    hole_cards_1 = []
     card_1, deck = poker.select(deck, "cA")
     card_2, deck = poker.select(deck, "dA")
-    
-    hole_cards_1 = []
     hole_cards_1.append(card_1)
     hole_cards_1.append(card_2)
-    
+
+    hole_cards_2 = []
     card_3, deck = poker.select(deck, "h2")
     card_4, deck = poker.select(deck, "s3")
-    
-    hole_cards_2 = []
     hole_cards_2.append(card_3)
     hole_cards_2.append(card_4)
-    
+
+    dealer_board = []
+    """    
     card_5, deck = poker.select(deck, "hA")
     card_6, deck = poker.select(deck, "sA")
     card_7, deck = poker.select(deck, "sK")
-
-    dealer_board = []
     dealer_board.append(card_5)
     dealer_board.append(card_6)
     dealer_board.append(card_7)
+    """
 
     hand_1_win_count = 0
     hand_2_win_count = 0
@@ -49,8 +62,10 @@ def win_rate_check():
             hand_2_win_count += 1
         count += 1
     
-    print("player 1:", round(100 * (hand_1_win_count / count)), "%")
-    print("player 2:", round(100 * (hand_2_win_count / count)), "%")
+    hole_cards_1_text = poker.cards_to_text(hole_cards_1, " ")
+    hole_cards_2_text = poker.cards_to_text(hole_cards_2, " ")
+    print(hole_cards_1_text + ":", round(100 * (hand_1_win_count / count)), "%")
+    print(hole_cards_2_text + ":", round(100 * (hand_2_win_count / count)), "%")
 
 def random_check():
     for i in range(100):
@@ -93,4 +108,5 @@ def random_check():
             print("you win")
         print("")
 
-win_rate_check()
+#win_rate_check()
+all_check()
