@@ -99,7 +99,7 @@ func hand_vs_hand(hands []string) error {
 
 func hand_vs_range(hands []string) error {
 	if len(hands) < 3 {
-		return errors.New("usage: hh hand range")
+		return errors.New("usage: hh hand range <board>")
 	}
 	hand1 := newCards(hands[1])
 	target1 := make([]int, 7)
@@ -107,6 +107,14 @@ func hand_vs_range(hands []string) error {
 	target1[6] = hand1[1]
 
 	board := make([]int, 5)
+	preBoard := []int{}
+	if len(hands) == 4 {
+		preBoard = newCards(hands[3])
+		for i, v := range preBoard {
+			board[len(board)-i-1] = v
+		}
+	}
+	comb := len(board) - len(preBoard)
 
 	r := newRange(hands[2])
 	target2 := make([]int, 7)
@@ -117,11 +125,14 @@ func hand_vs_range(hands []string) error {
 		target2[5] = hand2[0]
 		target2[6] = hand2[1]
 
-		deck := newDeck(5)
+		deck := newDeck(comb)
 		for _, card := range hand1 {
 			deck.remove(card)
 		}
 		for _, card := range hand2 {
+			deck.remove(card)
+		}
+		for _, card := range preBoard {
 			deck.remove(card)
 		}
 
@@ -130,17 +141,10 @@ func hand_vs_range(hands []string) error {
 				break
 			}
 
-			target1[0] = board[0]
-			target1[1] = board[1]
-			target1[2] = board[2]
-			target1[3] = board[3]
-			target1[4] = board[4]
-
-			target2[0] = board[0]
-			target2[1] = board[1]
-			target2[2] = board[2]
-			target2[3] = board[3]
-			target2[4] = board[4]
+			for i, v := range board {
+				target1[i] = v
+				target2[i] = v
+			}
 
 			rank1 := evaluate7(target1)
 			rank2 := evaluate7(target2)
