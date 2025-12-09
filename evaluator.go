@@ -6708,6 +6708,270 @@ var indexes = [][]int{
 	[]int{2, 3, 4, 5, 6},
 }
 
+var utg_range = [][]int{
+	// AA
+	[]int{ca, da}, []int{ca, ha}, []int{ca, sa}, []int{da, ha}, []int{da, sa}, []int{ha, sa},
+	// KK
+	[]int{ck, dk}, []int{ck, hk}, []int{ck, sk}, []int{dk, hk}, []int{dk, sk}, []int{hk, sk},
+	// QQ
+	[]int{cq, dq}, []int{cq, hq}, []int{cq, sq}, []int{dq, hq}, []int{dq, sq}, []int{hq, sq},
+	// JJ
+	[]int{cj, dj}, []int{cj, hj}, []int{cj, sj}, []int{dj, hj}, []int{dj, sj}, []int{hj, sj},
+	// TT
+	[]int{ct, dt}, []int{ct, ht}, []int{ct, st}, []int{dt, ht}, []int{dt, st}, []int{ht, st},
+	// 99
+	[]int{c9, d9}, []int{c9, h9}, []int{c9, s9}, []int{d9, h9}, []int{d9, s9}, []int{h9, s9},
+	// 88
+	[]int{c8, d8}, []int{c8, h8}, []int{c8, s8}, []int{d8, h8}, []int{d8, s8}, []int{h8, s8},
+	// 77
+	[]int{c7, d7}, []int{c7, h7}, []int{c7, s7}, []int{d7, h7}, []int{d7, s7}, []int{h7, s7},
+	// 66
+	[]int{c6, d6}, []int{c6, h6}, []int{c6, s6}, []int{d6, h6}, []int{d6, s6}, []int{h6, s6},
+	// AKs - A2s
+	[]int{ca, ck}, []int{ca, cq}, []int{ca, cj}, []int{ca, ct}, []int{ca, c9}, []int{ca, c8}, []int{ca, c7}, []int{ca, c6}, []int{ca, c5}, []int{ca, c4}, []int{ca, c3}, []int{ca, c2},
+	[]int{da, dk}, []int{da, dq}, []int{da, dj}, []int{da, dt}, []int{da, d9}, []int{da, d8}, []int{da, d7}, []int{da, d6}, []int{da, d5}, []int{da, d4}, []int{da, d3}, []int{da, d2},
+	[]int{ha, hk}, []int{ha, hq}, []int{ha, hj}, []int{ha, ht}, []int{ha, h9}, []int{ha, h8}, []int{ha, h7}, []int{ha, h6}, []int{ha, h5}, []int{ha, h4}, []int{ha, h3}, []int{ha, h2},
+	[]int{sa, sk}, []int{sa, sq}, []int{sa, sj}, []int{sa, st}, []int{sa, s9}, []int{sa, s8}, []int{sa, s7}, []int{sa, s6}, []int{sa, s5}, []int{sa, s4}, []int{sa, s3}, []int{sa, s2},
+	// KQs - KTs
+	[]int{ck, cq}, []int{ck, cj}, []int{ck, ct},
+	[]int{dk, dq}, []int{dk, dj}, []int{dk, dt},
+	[]int{hk, hq}, []int{hk, hj}, []int{hk, ht},
+	[]int{sk, sq}, []int{sk, sj}, []int{sk, st},
+	// QJs - QTs
+	[]int{cq, cj}, []int{cq, ct},
+	[]int{dq, dj}, []int{dq, dt},
+	[]int{hq, hj}, []int{hq, ht},
+	[]int{sq, sj}, []int{sq, st},
+	// JTs
+	[]int{cj, ct},
+	[]int{dj, dt},
+	[]int{hj, ht},
+	[]int{sj, st},
+	// T9s
+	[]int{ct, c9},
+	[]int{dt, d9},
+	[]int{ht, h9},
+	[]int{st, s9},
+	// 98s
+	[]int{c9, c8},
+	[]int{d9, d8},
+	[]int{h9, h8},
+	[]int{s9, s8},
+	// AKo - ATo
+	[]int{ca, dk}, []int{ca, hk}, []int{ca, sk},
+	[]int{da, ck}, []int{da, hk}, []int{da, sk},
+	[]int{ha, ck}, []int{ha, dk}, []int{ha, sk},
+	[]int{sa, ck}, []int{sa, dk}, []int{sa, hk},
+	[]int{ca, dq}, []int{ca, hq}, []int{ca, sq},
+	[]int{da, cq}, []int{da, hq}, []int{da, sq},
+	[]int{ha, cq}, []int{ha, dq}, []int{ha, sq},
+	[]int{sa, cq}, []int{sa, dq}, []int{sa, hq},
+	[]int{ca, dj}, []int{ca, hj}, []int{ca, sj},
+	[]int{da, cj}, []int{da, hj}, []int{da, sj},
+	[]int{ha, cj}, []int{ha, dj}, []int{ha, sj},
+	[]int{sa, cj}, []int{sa, dj}, []int{sa, hj},
+	[]int{ca, dt}, []int{ca, ht}, []int{ca, st},
+	[]int{da, ct}, []int{da, ht}, []int{da, st},
+	[]int{ha, ct}, []int{ha, dt}, []int{ha, st},
+	[]int{sa, ct}, []int{sa, dt}, []int{sa, ht},
+	// KQo
+	[]int{ck, dq}, []int{ck, hq}, []int{ck, sq},
+	[]int{dk, cq}, []int{dk, hq}, []int{dk, sq},
+	[]int{hk, cq}, []int{hk, dq}, []int{hk, sq},
+	[]int{sk, cq}, []int{sk, dq}, []int{sk, hq},
+}
+
+var btn_range = [][]int{
+	// AA
+	[]int{ca, da}, []int{ca, ha}, []int{ca, sa}, []int{da, ha}, []int{da, sa}, []int{ha, sa},
+	// KK
+	[]int{ck, dk}, []int{ck, hk}, []int{ck, sk}, []int{dk, hk}, []int{dk, sk}, []int{hk, sk},
+	// QQ
+	[]int{cq, dq}, []int{cq, hq}, []int{cq, sq}, []int{dq, hq}, []int{dq, sq}, []int{hq, sq},
+	// JJ
+	[]int{cj, dj}, []int{cj, hj}, []int{cj, sj}, []int{dj, hj}, []int{dj, sj}, []int{hj, sj},
+	// TT
+	[]int{ct, dt}, []int{ct, ht}, []int{ct, st}, []int{dt, ht}, []int{dt, st}, []int{ht, st},
+	// 99
+	[]int{c9, d9}, []int{c9, h9}, []int{c9, s9}, []int{d9, h9}, []int{d9, s9}, []int{h9, s9},
+	// 88
+	[]int{c8, d8}, []int{c8, h8}, []int{c8, s8}, []int{d8, h8}, []int{d8, s8}, []int{h8, s8},
+	// 77
+	[]int{c7, d7}, []int{c7, h7}, []int{c7, s7}, []int{d7, h7}, []int{d7, s7}, []int{h7, s7},
+	// 66
+	[]int{c6, d6}, []int{c6, h6}, []int{c6, s6}, []int{d6, h6}, []int{d6, s6}, []int{h6, s6},
+	// 55
+	[]int{c5, d5}, []int{c5, h5}, []int{c5, s5}, []int{d5, h5}, []int{d5, s5}, []int{h5, s5},
+	// 44
+	[]int{c4, d4}, []int{c4, h4}, []int{c4, s4}, []int{d4, h4}, []int{d4, s4}, []int{h4, s4},
+	// 33
+	[]int{c3, d3}, []int{c3, h3}, []int{c3, s3}, []int{d3, h3}, []int{d3, s3}, []int{h3, s3},
+	// 22
+	[]int{c2, d2}, []int{c2, h2}, []int{c2, s2}, []int{d2, h2}, []int{d2, s2}, []int{h2, s2},
+	// AKs - A2s
+	[]int{ca, ck}, []int{ca, cq}, []int{ca, cj}, []int{ca, ct}, []int{ca, c9}, []int{ca, c8}, []int{ca, c7}, []int{ca, c6}, []int{ca, c5}, []int{ca, c4}, []int{ca, c3}, []int{ca, c2},
+	[]int{da, dk}, []int{da, dq}, []int{da, dj}, []int{da, dt}, []int{da, d9}, []int{da, d8}, []int{da, d7}, []int{da, d6}, []int{da, d5}, []int{da, d4}, []int{da, d3}, []int{da, d2},
+	[]int{ha, hk}, []int{ha, hq}, []int{ha, hj}, []int{ha, ht}, []int{ha, h9}, []int{ha, h8}, []int{ha, h7}, []int{ha, h6}, []int{ha, h5}, []int{ha, h4}, []int{ha, h3}, []int{ha, h2},
+	[]int{sa, sk}, []int{sa, sq}, []int{sa, sj}, []int{sa, st}, []int{sa, s9}, []int{sa, s8}, []int{sa, s7}, []int{sa, s6}, []int{sa, s5}, []int{sa, s4}, []int{sa, s3}, []int{sa, s2},
+	// KQs - K2s
+	[]int{ck, cq}, []int{ck, cj}, []int{ck, ct}, []int{ck, c9}, []int{ck, c8}, []int{ck, c7}, []int{ck, c6}, []int{ck, c5}, []int{ck, c4}, []int{ck, c3}, []int{ck, c2},
+	[]int{dk, dq}, []int{dk, dj}, []int{dk, dt}, []int{dk, d9}, []int{dk, d8}, []int{dk, d7}, []int{dk, d6}, []int{dk, d5}, []int{dk, d4}, []int{dk, d3}, []int{dk, d2},
+	[]int{hk, hq}, []int{hk, hj}, []int{hk, ht}, []int{hk, h9}, []int{hk, h8}, []int{hk, h7}, []int{hk, h6}, []int{hk, h5}, []int{hk, h4}, []int{hk, h3}, []int{hk, h2},
+	[]int{sk, sq}, []int{sk, sj}, []int{sk, st}, []int{sk, s9}, []int{sk, s8}, []int{sk, s7}, []int{sk, s6}, []int{sk, s5}, []int{sk, s4}, []int{sk, s3}, []int{sk, s2},
+	// QJs - Q2s
+	[]int{cq, cj}, []int{cq, ct}, []int{cq, c9}, []int{cq, c8}, []int{cq, c7}, []int{cq, c6}, []int{cq, c5}, []int{cq, c4}, []int{cq, c3}, []int{cq, c2},
+	[]int{dq, dj}, []int{dq, dt}, []int{dq, d9}, []int{dq, d8}, []int{dq, d7}, []int{dq, d6}, []int{dq, d5}, []int{dq, d4}, []int{dq, d3}, []int{dq, d2},
+	[]int{hq, hj}, []int{hq, ht}, []int{hq, h9}, []int{hq, h8}, []int{hq, h7}, []int{hq, h6}, []int{hq, h5}, []int{hq, h4}, []int{hq, h3}, []int{hq, h2},
+	[]int{sq, sj}, []int{sq, st}, []int{sq, s9}, []int{sq, s8}, []int{sq, s7}, []int{sq, s6}, []int{sq, s5}, []int{sq, s4}, []int{sq, s3}, []int{sq, s2},
+	// JTs - J5s
+	[]int{cj, ct}, []int{cj, c9}, []int{cj, c8}, []int{cj, c7}, []int{cj, c6}, []int{cj, c5},
+	[]int{dj, dt}, []int{dj, d9}, []int{dj, d8}, []int{dj, d7}, []int{dj, d6}, []int{dj, d5},
+	[]int{hj, ht}, []int{hj, h9}, []int{hj, h8}, []int{hj, h7}, []int{hj, h6}, []int{hj, h5},
+	[]int{sj, st}, []int{sj, s9}, []int{sj, s8}, []int{sj, s7}, []int{sj, s6}, []int{sj, s5},
+	// T9s - T6s
+	[]int{ct, c9}, []int{ct, c8}, []int{ct, c7}, []int{ct, c6},
+	[]int{dt, d9}, []int{dt, d8}, []int{dt, d7}, []int{dt, d6},
+	[]int{ht, h9}, []int{ht, h8}, []int{ht, h7}, []int{ht, h6},
+	[]int{st, s9}, []int{st, s8}, []int{st, s7}, []int{st, s6},
+	// 98s - 96s
+	[]int{c9, c8}, []int{c9, c7}, []int{c9, c6},
+	[]int{d9, d8}, []int{d9, d7}, []int{d9, d6},
+	[]int{h9, h8}, []int{h9, h7}, []int{h9, h6},
+	[]int{s9, s8}, []int{s9, s7}, []int{s9, s6},
+	// 87s - 86s
+	[]int{c8, c7}, []int{c8, c6},
+	[]int{d8, d7}, []int{d8, d6},
+	[]int{h8, h7}, []int{h8, h6},
+	[]int{s8, s7}, []int{s8, s6},
+	// 76s - 75s
+	[]int{c7, c6}, []int{c7, c5},
+	[]int{d7, d6}, []int{d7, d5},
+	[]int{h7, h6}, []int{h7, h5},
+	[]int{s7, s6}, []int{s7, s5},
+	// 65s
+	[]int{c6, c5},
+	[]int{d6, d5},
+	[]int{h6, h5},
+	[]int{s6, s5},
+	// 54s
+	[]int{c5, c4},
+	[]int{d5, d4},
+	[]int{h5, h4},
+	[]int{s5, s4},
+	// AKo - A2o
+	[]int{ca, dk}, []int{ca, hk}, []int{ca, sk},
+	[]int{da, ck}, []int{da, hk}, []int{da, sk},
+	[]int{ha, ck}, []int{ha, dk}, []int{ha, sk},
+	[]int{sa, ck}, []int{sa, dk}, []int{sa, hk},
+	[]int{ca, dq}, []int{ca, hq}, []int{ca, sq},
+	[]int{da, cq}, []int{da, hq}, []int{da, sq},
+	[]int{ha, cq}, []int{ha, dq}, []int{ha, sq},
+	[]int{sa, cq}, []int{sa, dq}, []int{sa, hq},
+	[]int{ca, dj}, []int{ca, hj}, []int{ca, sj},
+	[]int{da, cj}, []int{da, hj}, []int{da, sj},
+	[]int{ha, cj}, []int{ha, dj}, []int{ha, sj},
+	[]int{sa, cj}, []int{sa, dj}, []int{sa, hj},
+	[]int{ca, dt}, []int{ca, ht}, []int{ca, st},
+	[]int{da, ct}, []int{da, ht}, []int{da, st},
+	[]int{ha, ct}, []int{ha, dt}, []int{ha, st},
+	[]int{sa, ct}, []int{sa, dt}, []int{sa, ht},
+	[]int{ca, d9}, []int{ca, h9}, []int{ca, s9},
+	[]int{da, c9}, []int{da, h9}, []int{da, s9},
+	[]int{ha, c9}, []int{ha, d9}, []int{ha, s9},
+	[]int{sa, c9}, []int{sa, d9}, []int{sa, h9},
+	[]int{ca, d8}, []int{ca, h8}, []int{ca, s8},
+	[]int{da, c8}, []int{da, h8}, []int{da, s8},
+	[]int{ha, c8}, []int{ha, d8}, []int{ha, s8},
+	[]int{sa, c8}, []int{sa, d8}, []int{sa, h8},
+	[]int{ca, d7}, []int{ca, h7}, []int{ca, s7},
+	[]int{da, c7}, []int{da, h7}, []int{da, s7},
+	[]int{ha, c7}, []int{ha, d7}, []int{ha, s7},
+	[]int{sa, c7}, []int{sa, d7}, []int{sa, h7},
+	[]int{ca, d6}, []int{ca, h6}, []int{ca, s6},
+	[]int{da, c6}, []int{da, h6}, []int{da, s6},
+	[]int{ha, c6}, []int{ha, d6}, []int{ha, s6},
+	[]int{sa, c6}, []int{sa, d6}, []int{sa, h6},
+	[]int{ca, d5}, []int{ca, h5}, []int{ca, s5},
+	[]int{da, c5}, []int{da, h5}, []int{da, s5},
+	[]int{ha, c5}, []int{ha, d5}, []int{ha, s5},
+	[]int{sa, c5}, []int{sa, d5}, []int{sa, h5},
+	[]int{ca, d4}, []int{ca, h4}, []int{ca, s4},
+	[]int{da, c4}, []int{da, h4}, []int{da, s4},
+	[]int{ha, c4}, []int{ha, d4}, []int{ha, s4},
+	[]int{sa, c4}, []int{sa, d4}, []int{sa, h4},
+	[]int{ca, d3}, []int{ca, h3}, []int{ca, s3},
+	[]int{da, c3}, []int{da, h3}, []int{da, s3},
+	[]int{ha, c3}, []int{ha, d3}, []int{ha, s3},
+	[]int{sa, c3}, []int{sa, d3}, []int{sa, h3},
+	[]int{ca, d2}, []int{ca, h2}, []int{ca, s2},
+	[]int{da, c2}, []int{da, h2}, []int{da, s2},
+	[]int{ha, c2}, []int{ha, d2}, []int{ha, s2},
+	[]int{sa, c2}, []int{sa, d2}, []int{sa, h2},
+	// KQo - K8o
+	[]int{ck, dq}, []int{ck, hq}, []int{ck, sq},
+	[]int{dk, cq}, []int{dk, hq}, []int{dk, sq},
+	[]int{hk, cq}, []int{hk, dq}, []int{hk, sq},
+	[]int{sk, cq}, []int{sk, dq}, []int{sk, hq},
+	[]int{ck, dj}, []int{ck, hj}, []int{ck, sj},
+	[]int{dk, cj}, []int{dk, hj}, []int{dk, sj},
+	[]int{hk, cj}, []int{hk, dj}, []int{hk, sj},
+	[]int{sk, cj}, []int{sk, dj}, []int{sk, hj},
+	[]int{ck, dt}, []int{ck, ht}, []int{ck, st},
+	[]int{dk, ct}, []int{dk, ht}, []int{dk, st},
+	[]int{hk, ct}, []int{hk, dt}, []int{hk, st},
+	[]int{sk, ct}, []int{sk, dt}, []int{sk, ht},
+	[]int{ck, d9}, []int{ck, h9}, []int{ck, s9},
+	[]int{dk, c9}, []int{dk, h9}, []int{dk, s9},
+	[]int{hk, c9}, []int{hk, d9}, []int{hk, s9},
+	[]int{sk, c9}, []int{sk, d9}, []int{sk, h9},
+	[]int{ck, d8}, []int{ck, h8}, []int{ck, s8},
+	[]int{dk, c8}, []int{dk, h8}, []int{dk, s8},
+	[]int{hk, c8}, []int{hk, d8}, []int{hk, s8},
+	[]int{sk, c8}, []int{sk, d8}, []int{sk, h8},
+	// QJo - Q8o
+	[]int{cq, dj}, []int{cq, hj}, []int{cq, sj},
+	[]int{dq, cj}, []int{dq, hj}, []int{dq, sj},
+	[]int{hq, cj}, []int{hq, dj}, []int{hq, sj},
+	[]int{sq, cj}, []int{sq, dj}, []int{sq, hj},
+	[]int{cq, dt}, []int{cq, ht}, []int{cq, st},
+	[]int{dq, ct}, []int{dq, ht}, []int{dq, st},
+	[]int{hq, ct}, []int{hq, dt}, []int{hq, st},
+	[]int{sq, ct}, []int{sq, dt}, []int{sq, ht},
+	[]int{cq, d9}, []int{cq, h9}, []int{cq, s9},
+	[]int{dq, c9}, []int{dq, h9}, []int{dq, s9},
+	[]int{hq, c9}, []int{hq, d9}, []int{hq, s9},
+	[]int{sq, c9}, []int{sq, d9}, []int{sq, h9},
+	[]int{cq, d8}, []int{cq, h8}, []int{cq, s8},
+	[]int{dq, c8}, []int{dq, h8}, []int{dq, s8},
+	[]int{hq, c8}, []int{hq, d8}, []int{hq, s8},
+	[]int{sq, c8}, []int{sq, d8}, []int{sq, h8},
+	// JTo - J9o
+	[]int{cj, dt}, []int{cj, ht}, []int{cj, st},
+	[]int{dj, ct}, []int{dj, ht}, []int{dj, st},
+	[]int{hj, ct}, []int{hj, dt}, []int{hj, st},
+	[]int{sj, ct}, []int{sj, dt}, []int{sj, ht},
+	[]int{cj, d9}, []int{cj, h9}, []int{cj, s9},
+	[]int{dj, c9}, []int{dj, h9}, []int{dj, s9},
+	[]int{hj, c9}, []int{hj, d9}, []int{hj, s9},
+	[]int{sj, c9}, []int{sj, d9}, []int{sj, h9},
+	// T9o
+	[]int{ct, d9}, []int{ct, h9}, []int{ct, s9},
+	[]int{dt, c9}, []int{dt, h9}, []int{dt, s9},
+	[]int{ht, c9}, []int{ht, d9}, []int{ht, s9},
+	[]int{st, c9}, []int{st, d9}, []int{st, h9},
+}
+
+func newRange(r string) [][]int {
+	switch r {
+	case "utg":
+		return utg_range
+	case "btn":
+		return btn_range
+	default:
+		return nil
+	}
+}
+
 type Deck struct {
 	cards []int
 	board []int
