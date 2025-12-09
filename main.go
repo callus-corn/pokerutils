@@ -29,7 +29,7 @@ func main() {
 			logger.Error(err.Error(), "command", command)
 			os.Exit(1)
 		}
-	case "ch":
+	case "bench":
 		if err := all_check(); err != nil {
 			logger.Error(err.Error(), "command", command)
 			os.Exit(1)
