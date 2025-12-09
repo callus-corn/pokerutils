@@ -6982,7 +6982,11 @@ func newDeck(comb int) Deck {
 	for i := range board {
 		board[i] = i
 	}
-	board[comb-1] = board[comb-2]
+	if comb == 1 {
+		board[0] = -1
+	} else {
+		board[comb-1] = board[comb-2]
+	}
 
 	return Deck{
 		cards: []int{

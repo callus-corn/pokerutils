@@ -155,7 +155,6 @@ func hand_vs_range(hands []string) error {
 			count++
 		}
 	}
-	println(hands[1])
 	println(hands[2], 100*win/count, "%")
 
 	return nil
