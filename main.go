@@ -81,8 +81,8 @@ func hand_vs_hand(hands []string) error {
 		target2[3] = board[3]
 		target2[4] = board[4]
 
-		rank1 := evaluate(target1)
-		rank2 := evaluate(target2)
+		rank1 := evaluate7(target1)
+		rank2 := evaluate7(target2)
 
 		if rank1 < rank2 {
 			win1++
@@ -142,8 +142,8 @@ func hand_vs_range(hands []string) error {
 			target2[3] = board[3]
 			target2[4] = board[4]
 
-			rank1 := evaluate(target1)
-			rank2 := evaluate(target2)
+			rank1 := evaluate7(target1)
+			rank2 := evaluate7(target2)
 
 			if rank1 < rank2 {
 				win++
@@ -166,7 +166,7 @@ func all_check() error {
 		if end := deck.nextBoard(hand); end {
 			break
 		}
-		evaluate(hand)
+		evaluate7(hand)
 	}
 	println("all check time:", time.Since(s).Seconds())
 
