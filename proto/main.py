@@ -118,8 +118,8 @@ def random_check():
 
 def range_check(board_text):
     board = poker.text_to_cards(board_text)
-    utg_range = poker.utg_range_new()
 
+    utg_range = poker.utg_range_new()
     count = 0
     sf_count = 0
     fk_count = 0
@@ -132,7 +132,7 @@ def range_check(board_text):
     hc_count = 0
     for hole_cards in utg_range:
         if board[0] == hole_cards[0] or board[0] == hole_cards[1] or board[1] == hole_cards[0] or board[1] == hole_cards[1] or board[2] == hole_cards[0] or board[2] == hole_cards[1]:
-           continue
+            continue
         rank = poker.judge_5(board[0], board[1], board[2], hole_cards[0], hole_cards[1])
         if rank < 11:
             sf_count += 1
@@ -153,7 +153,7 @@ def range_check(board_text):
         elif rank < 7464:
             hc_count += 1
         count += 1
-    print()
+    print("UTG")
     print("straight flash:", 100*sf_count/count, "%")
     print("4 of a kind:", 100*fk_count/count, "%")
     print("full house:", 100*fh_count/count, "%")
@@ -163,6 +163,79 @@ def range_check(board_text):
     print("2 pair:", 100*tp_count/count, "%")
     print("1 pair:", 100*op_count/count, "%")
     print("high:", 100*hc_count/count, "%")
+    print("")
+
+    btn_range = poker.btn_range_new()
+    count = 0
+    sf_count = 0
+    fk_count = 0
+    fh_count = 0
+    fl_count = 0
+    st_count = 0
+    tk_count = 0
+    tp_count = 0
+    op_count = 0
+    hc_count = 0
+    for hole_cards in btn_range:
+        if board[0] == hole_cards[0] or board[0] == hole_cards[1] or board[1] == hole_cards[0] or board[1] == hole_cards[1] or board[2] == hole_cards[0] or board[2] == hole_cards[1]:
+            continue
+        rank = poker.judge_5(board[0], board[1], board[2], hole_cards[0], hole_cards[1])
+        if rank < 11:
+            sf_count += 1
+        elif rank < 167:
+            fk_count += 1
+        elif rank < 323:
+            fh_count += 1
+        elif rank < 1600:
+            fl_count += 1
+        elif rank < 1610:
+            st_count += 1
+        elif rank < 2468:
+            tk_count += 1
+        elif rank < 3326:
+            tp_count += 1
+        elif rank < 6186:
+            op_count += 1
+        elif rank < 7464:
+            hc_count += 1
+        count += 1
+    print("BTN")
+    print("straight flash:", 100*sf_count/count, "%")
+    print("4 of a kind:", 100*fk_count/count, "%")
+    print("full house:", 100*fh_count/count, "%")
+    print("flash:", 100*fl_count/count, "%")
+    print("straight:", 100*st_count/count, "%")
+    print("3 of a kind:", 100*tk_count/count, "%")
+    print("2 pair:", 100*tp_count/count, "%")
+    print("1 pair:", 100*op_count/count, "%")
+    print("high:", 100*hc_count/count, "%")
+    print("")
+
+    utg_win_count = 0
+    btn_win_count = 0
+    vs_count = 0
+    for utg_cards in utg_range:
+        for btn_cards in btn_range:
+            if board[0] == utg_cards[0] or board[0] == utg_cards[1] or \
+               board[1] == utg_cards[0] or board[1] == utg_cards[1] or \
+               board[2] == utg_cards[0] or board[2] == utg_cards[1] or \
+               board[0] == btn_cards[0] or board[0] == btn_cards[1] or \
+               board[1] == btn_cards[0] or board[1] == btn_cards[1] or \
+               board[2] == btn_cards[0] or board[2] == btn_cards[1] or \
+               utg_cards[0] == btn_cards[0] or utg_cards[0] == btn_cards[1] or \
+               utg_cards[1] == btn_cards[0] or utg_cards[1] == btn_cards[1]:
+                continue
+            btn_rank = poker.judge_5(board[0], board[1], board[2], btn_cards[0], btn_cards[1])
+            utg_rank = poker.judge_5(board[0], board[1], board[2], utg_cards[0], utg_cards[1])
+            if btn_rank < utg_rank:
+                btn_win_count += 1
+            elif utg_rank < btn_rank:
+                utg_win_count += 1
+            count += 1
+    print("UTG vs BTN")
+    print(100*utg_win_count/count, "% vs", 100*btn_win_count/count, "%")
+    print("")
+
 
 #win_rate_check()
 #all_check()

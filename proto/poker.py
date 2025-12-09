@@ -6809,8 +6809,191 @@ utg_range = [
     [sk, cq], [sk, dq], [sk, hq],
 ]
 
+btn_range = [
+    # AA
+    [ca, da], [ca, ha], [ca, sa], [da, ha], [da, sa], [ha, sa],
+    # KK
+    [ck, dk], [ck, hk], [ck, sk], [dk, hk], [dk, sk], [hk, sk],
+    # QQ
+    [cq, dq], [cq, hq], [cq, sq], [dq, hq], [dq, sq], [hq, sq],
+    # JJ
+    [cj, dj], [cj, hj], [cj, sj], [dj, hj], [dj, sj], [hj, sj],
+    # TT
+    [ct, dt], [ct, ht], [ct, st], [dt, ht], [dt, st], [ht, st],
+    # 99
+    [c9, d9], [c9, h9], [c9, s9], [d9, h9], [d9, s9], [h9, s9],
+    # 88
+    [c8, d8], [c8, h8], [c8, s8], [d8, h8], [d8, s8], [h8, s8],
+    # 77
+    [c7, d7], [c7, h7], [c7, s7], [d7, h7], [d7, s7], [h7, s7],
+    # 66
+    [c6, d6], [c6, h6], [c6, s6], [d6, h6], [d6, s6], [h6, s6],
+    # 55
+    [c5, d5], [c5, h5], [c5, s5], [d5, h5], [d5, s5], [h5, s5],
+    # 44
+    [c4, d4], [c4, h4], [c4, s4], [d4, h4], [d4, s4], [h4, s4],
+    # 33
+    [c3, d3], [c3, h3], [c3, s3], [d3, h3], [d3, s3], [h3, s3],
+    # 22
+    [c2, d2], [c2, h2], [c2, s2], [d2, h2], [d2, s2], [h2, s2],
+    # AKs - A2s
+    [ca, ck], [ca, cq], [ca, cj], [ca, ct], [ca, c9], [ca, c8], [ca, c7], [ca, c6], [ca, c5], [ca, c4], [ca, c3], [ca, c2],
+    [da, dk], [da, dq], [da, dj], [da, dt], [da, d9], [da, d8], [da, d7], [da, d6], [da, d5], [da, d4], [da, d3], [da, d2],
+    [ha, hk], [ha, hq], [ha, hj], [ha, ht], [ha, h9], [ha, h8], [ha, h7], [ha, h6], [ha, h5], [ha, h4], [ha, h3], [ha, h2],
+    [sa, sk], [sa, sq], [sa, sj], [sa, st], [sa, s9], [sa, s8], [sa, s7], [sa, s6], [sa, s5], [sa, s4], [sa, s3], [sa, s2],
+    # KQs - K2s
+    [ck, cq], [ck, cj], [ck, ct], [ck, c9], [ck, c8], [ck, c7], [ck, c6], [ck, c5], [ck, c4], [ck, c3], [ck, c2],
+    [dk, dq], [dk, dj], [dk, dt], [dk, d9], [dk, d8], [dk, d7], [dk, d6], [dk, d5], [dk, d4], [dk, d3], [dk, d2],
+    [hk, hq], [hk, hj], [hk, ht], [hk, h9], [hk, h8], [hk, h7], [hk, h6], [hk, h5], [hk, h4], [hk, h3], [hk, h2],
+    [sk, sq], [sk, sj], [sk, st], [sk, s9], [sk, s8], [sk, s7], [sk, s6], [sk, s5], [sk, s4], [sk, s3], [sk, s2],
+    # QJs - Q2s
+    [cq, cj], [cq, ct], [cq, c9], [cq, c8], [cq, c7], [cq, c6], [cq, c5], [cq, c4], [cq, c3], [cq, c2],
+    [dq, dj], [dq, dt], [dq, d9], [dq, d8], [dq, d7], [dq, d6], [dq, d5], [dq, d4], [dq, d3], [dq, d2],
+    [hq, hj], [hq, ht], [hq, h9], [hq, h8], [hq, h7], [hq, h6], [hq, h5], [hq, h4], [hq, h3], [hq, h2],
+    [sq, sj], [sq, st], [sq, s9], [sq, s8], [sq, s7], [sq, s6], [sq, s5], [sq, s4], [sq, s3], [sq, s2],
+    # JTs - J5s
+    [cj, ct], [cj, c9], [cj, c8], [cj, c7], [cj, c6], [cj, c5],
+    [dj, dt], [dj, d9], [dj, d8], [dj, d7], [dj, d6], [dj, d5],
+    [hj, ht], [hj, h9], [hj, h8], [hj, h7], [hj, h6], [hj, h5],
+    [sj, st], [sj, s9], [sj, s8], [sj, s7], [sj, s6], [sj, s5],
+    # T9s - T6s
+    [ct, c9], [ct, c8], [ct, c7], [ct, c6],
+    [dt, d9], [dt, d8], [dt, d7], [dt, d6],
+    [ht, h9], [ht, h8], [ht, h7], [ht, h6],
+    [st, s9], [st, s8], [st, s7], [st, s6],
+    # 98s - 96s
+    [c9, c8], [c9, c7], [c9, c6],
+    [d9, d8], [d9, d7], [d9, d6],
+    [h9, h8], [h9, h7], [h9, h6],
+    [s9, s8], [s9, s7], [s9, s6],
+    # 87s - 86s
+    [c8, c7], [c8, c6],
+    [d8, d7], [d8, d6],
+    [h8, h7], [h8, h6],
+    [s8, s7], [s8, s6],
+    # 76s - 75s
+    [c7, c6], [c7, c5],
+    [d7, d6], [d7, d5],
+    [h7, h6], [h7, h5],
+    [s7, s6], [s7, s5],
+    # 65s
+    [c6, c5],
+    [d6, d5],
+    [h6, h5],
+    [s6, s5],
+    # 54s
+    [c5, c4],
+    [d5, d4],
+    [h5, h4],
+    [s5, s4],
+    # AKo - A2o
+    [ca, dk], [ca, hk], [ca, sk],
+    [da, ck], [da, hk], [da, sk],
+    [ha, ck], [ha, dk], [ha, sk],
+    [sa, ck], [sa, dk], [sa, hk],
+    [ca, dq], [ca, hq], [ca, sq],
+    [da, cq], [da, hq], [da, sq],
+    [ha, cq], [ha, dq], [ha, sq],
+    [sa, cq], [sa, dq], [sa, hq],
+    [ca, dj], [ca, hj], [ca, sj],
+    [da, cj], [da, hj], [da, sj],
+    [ha, cj], [ha, dj], [ha, sj],
+    [sa, cj], [sa, dj], [sa, hj],
+    [ca, dt], [ca, ht], [ca, st],
+    [da, ct], [da, ht], [da, st],
+    [ha, ct], [ha, dt], [ha, st],
+    [sa, ct], [sa, dt], [sa, ht],
+    [ca, d9], [ca, h9], [ca, s9],
+    [da, c9], [da, h9], [da, s9],
+    [ha, c9], [ha, d9], [ha, s9],
+    [sa, c9], [sa, d9], [sa, h9],
+    [ca, d8], [ca, h8], [ca, s8],
+    [da, c8], [da, h8], [da, s8],
+    [ha, c8], [ha, d8], [ha, s8],
+    [sa, c8], [sa, d8], [sa, h8],
+    [ca, d7], [ca, h7], [ca, s7],
+    [da, c7], [da, h7], [da, s7],
+    [ha, c7], [ha, d7], [ha, s7],
+    [sa, c7], [sa, d7], [sa, h7],
+    [ca, d6], [ca, h6], [ca, s6],
+    [da, c6], [da, h6], [da, s6],
+    [ha, c6], [ha, d6], [ha, s6],
+    [sa, c6], [sa, d6], [sa, h6],
+    [ca, d5], [ca, h5], [ca, s5],
+    [da, c5], [da, h5], [da, s5],
+    [ha, c5], [ha, d5], [ha, s5],
+    [sa, c5], [sa, d5], [sa, h5],
+    [ca, d4], [ca, h4], [ca, s4],
+    [da, c4], [da, h4], [da, s4],
+    [ha, c4], [ha, d4], [ha, s4],
+    [sa, c4], [sa, d4], [sa, h4],
+    [ca, d3], [ca, h3], [ca, s3],
+    [da, c3], [da, h3], [da, s3],
+    [ha, c3], [ha, d3], [ha, s3],
+    [sa, c3], [sa, d3], [sa, h3],
+    [ca, d2], [ca, h2], [ca, s2],
+    [da, c2], [da, h2], [da, s2],
+    [ha, c2], [ha, d2], [ha, s2],
+    [sa, c2], [sa, d2], [sa, h2],
+    # KQo - K8o
+    [ck, dq], [ck, hq], [ck, sq],
+    [dk, cq], [dk, hq], [dk, sq],
+    [hk, cq], [hk, dq], [hk, sq],
+    [sk, cq], [sk, dq], [sk, hq],
+    [ck, dj], [ck, hj], [ck, sj],
+    [dk, cj], [dk, hj], [dk, sj],
+    [hk, cj], [hk, dj], [hk, sj],
+    [sk, cj], [sk, dj], [sk, hj],
+    [ck, dt], [ck, ht], [ck, st],
+    [dk, ct], [dk, ht], [dk, st],
+    [hk, ct], [hk, dt], [hk, st],
+    [sk, ct], [sk, dt], [sk, ht],
+    [ck, d9], [ck, h9], [ck, s9],
+    [dk, c9], [dk, h9], [dk, s9],
+    [hk, c9], [hk, d9], [hk, s9],
+    [sk, c9], [sk, d9], [sk, h9],
+    [ck, d8], [ck, h8], [ck, s8],
+    [dk, c8], [dk, h8], [dk, s8],
+    [hk, c8], [hk, d8], [hk, s8],
+    [sk, c8], [sk, d8], [sk, h8],
+    # QJo - Q8o
+    [cq, dj], [cq, hj], [cq, sj],
+    [dq, cj], [dq, hj], [dq, sj],
+    [hq, cj], [hq, dj], [hq, sj],
+    [sq, cj], [sq, dj], [sq, hj],
+    [cq, dt], [cq, ht], [cq, st],
+    [dq, ct], [dq, ht], [dq, st],
+    [hq, ct], [hq, dt], [hq, st],
+    [sq, ct], [sq, dt], [sq, ht],
+    [cq, d9], [cq, h9], [cq, s9],
+    [dq, c9], [dq, h9], [dq, s9],
+    [hq, c9], [hq, d9], [hq, s9],
+    [sq, c9], [sq, d9], [sq, h9],
+    [cq, d8], [cq, h8], [cq, s8],
+    [dq, c8], [dq, h8], [dq, s8],
+    [hq, c8], [hq, d8], [hq, s8],
+    [sq, c8], [sq, d8], [sq, h8],
+    # JTo - J9o
+    [cj, dt], [cj, ht], [cj, st],
+    [dj, ct], [dj, ht], [dj, st],
+    [hj, ct], [hj, dt], [hj, st],
+    [sj, ct], [sj, dt], [sj, ht],
+    [cj, d9], [cj, h9], [cj, s9],
+    [dj, c9], [dj, h9], [dj, s9],
+    [hj, c9], [hj, d9], [hj, s9],
+    [sj, c9], [sj, d9], [sj, h9],
+    # T9o
+    [ct, d9], [ct, h9], [ct, s9],
+    [dt, c9], [dt, h9], [dt, s9],
+    [ht, c9], [ht, d9], [ht, s9],
+    [st, c9], [st, d9], [st, h9],
+]
+
 def utg_range_new():
     return utg_range.copy()
+
+def btn_range_new():
+    return btn_range.copy()
 
 def deck_new():
     return master_deck.copy()
