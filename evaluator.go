@@ -6977,7 +6977,13 @@ type Deck struct {
 	board []int
 }
 
-func newDeck() Deck {
+func newDeck(comb int) Deck {
+	board := make([]int, comb)
+	for i := range board {
+		board[i] = i
+	}
+	board[comb-1] = board[comb-2]
+
 	return Deck{
 		cards: []int{
 			c2, d2, h2, s2,
@@ -6994,7 +7000,7 @@ func newDeck() Deck {
 			ck, dk, hk, sk,
 			ca, da, ha, sa,
 		},
-		board: []int{0, 1, 2, 3, 3},
+		board: board,
 	}
 }
 
@@ -7008,26 +7014,23 @@ func (d *Deck) remove(card int) {
 	}
 }
 
-func (d *Deck) nextBoard(b []int) bool {
-	d.board[4]++
-	if d.board[4] >= len(d.cards) {
-		d.board[3]++
-		if d.board[3] >= len(d.cards)-1 {
-			d.board[2]++
-			if d.board[2] >= len(d.cards)-2 {
-				d.board[1]++
-				if d.board[1] >= len(d.cards)-3 {
-					d.board[0]++
-					if d.board[0] >= len(d.cards)-4 {
-						return true
-					}
-					d.board[1] = d.board[0] + 1
-				}
-				d.board[2] = d.board[1] + 1
+func countup(limit int, list []int) bool {
+	l := len(list)
+	for i := l - 1; i >= 0; i-- {
+		list[i]++
+		if list[i] < limit-(l-1-i) {
+			for j := i + 1; j < l; j++ {
+				list[j] = list[j-1] + 1
 			}
-			d.board[3] = d.board[2] + 1
+			return false
 		}
-		d.board[4] = d.board[3] + 1
+	}
+	return true
+}
+
+func (d *Deck) nextBoard(b []int) bool {
+	if end := countup(len(d.cards), d.board); end {
+		return end
 	}
 
 	b[0] = d.cards[d.board[0]]

@@ -4,6 +4,7 @@ import (
 	"errors"
 	"log/slog"
 	"os"
+	"time"
 )
 
 var logger *slog.Logger
@@ -25,6 +26,11 @@ func main() {
 		}
 	case "hr":
 		if err := hand_vs_range(os.Args[1:]); err != nil {
+			logger.Error(err.Error(), "command", command)
+			os.Exit(1)
+		}
+	case "ch":
+		if err := all_check(); err != nil {
 			logger.Error(err.Error(), "command", command)
 			os.Exit(1)
 		}
@@ -50,7 +56,7 @@ func hand_vs_hand(hands []string) error {
 	target2[5] = hand2[0]
 	target2[6] = hand2[1]
 
-	deck := newDeck()
+	deck := newDeck(5)
 	for _, card := range hand1 {
 		deck.remove(card)
 	}
@@ -58,9 +64,8 @@ func hand_vs_hand(hands []string) error {
 		deck.remove(card)
 	}
 
-	end := false
 	for {
-		if end = deck.nextBoard(board); end {
+		if end := deck.nextBoard(board); end {
 			break
 		}
 
@@ -112,7 +117,7 @@ func hand_vs_range(hands []string) error {
 		target2[5] = hand2[0]
 		target2[6] = hand2[1]
 
-		deck := newDeck()
+		deck := newDeck(5)
 		for _, card := range hand1 {
 			deck.remove(card)
 		}
@@ -148,6 +153,22 @@ func hand_vs_range(hands []string) error {
 	}
 	println(hands[1])
 	println(hands[2], 100*win/count, "%")
+
+	return nil
+}
+
+func all_check() error {
+	hand := make([]int, 7)
+	deck := newDeck(7)
+
+	s := time.Now()
+	for {
+		if end := deck.nextBoard(hand); end {
+			break
+		}
+		evaluate(hand)
+	}
+	println("all check time:", time.Since(s).Seconds())
 
 	return nil
 }
