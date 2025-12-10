@@ -29,6 +29,11 @@ func main() {
 			logger.Error(err.Error(), "command", command)
 			os.Exit(1)
 		}
+	case "rr":
+		if err := range_vs_range(os.Args[1:]); err != nil {
+			logger.Error(err.Error(), "command", command)
+			os.Exit(1)
+		}
 	case "bench":
 		if err := all_check(); err != nil {
 			logger.Error(err.Error(), "command", command)
@@ -156,6 +161,69 @@ func hand_vs_range(hands []string) error {
 		}
 	}
 	println(hands[2], 100*win/count, "%")
+
+	return nil
+}
+
+func range_vs_range(ranges []string) error {
+	if len(ranges) < 3 {
+		return errors.New("usage: hh range range <board>")
+	}
+	target1 := make([]int, 7)
+	target2 := make([]int, 7)
+	board := make([]int, 5)
+	preBoard := []int{}
+	if len(ranges) == 4 {
+		preBoard = newCards(ranges[3])
+		for i, v := range preBoard {
+			board[len(board)-i-1] = v
+		}
+	}
+	comb := len(board) - len(preBoard)
+
+	r1 := newRange(ranges[1])
+	r2 := newRange(ranges[2])
+	for _, hand1 := range r1 {
+		target1[5] = hand1[0]
+		target1[6] = hand1[1]
+
+		win := 0
+		count := 0
+		for _, hand2 := range r2 {
+			target2[5] = hand2[0]
+			target2[6] = hand2[1]
+
+			deck := newDeck(comb)
+			for _, card := range hand1 {
+				deck.remove(card)
+			}
+			for _, card := range hand2 {
+				deck.remove(card)
+			}
+			for _, card := range preBoard {
+				deck.remove(card)
+			}
+
+			for {
+				if end := deck.nextBoard(board); end {
+					break
+				}
+
+				for i, v := range board {
+					target1[i] = v
+					target2[i] = v
+				}
+
+				rank1 := evaluate7(target1)
+				rank2 := evaluate7(target2)
+				if rank1 < rank2 {
+					win++
+				}
+				count++
+			}
+		}
+		println(toText(hand1, " "), 100*win/count, "%")
+	}
 
 	return nil
 }

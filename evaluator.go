@@ -6961,12 +6961,63 @@ var btn_range = [][]int{
 	{st, c9}, {st, d9}, {st, h9},
 }
 
+var util_range = [][]int{
+	// AA
+	{ca, da},
+	// KK
+	{ck, dk},
+	// QQ
+	{cq, dq},
+	// JJ
+	{cj, dj},
+	// TT
+	{ct, dt},
+	// 99
+	{c9, d9},
+	// 88
+	{c8, d8},
+	// 77
+	{c7, d7},
+	// 66
+	{c6, d6},
+	// 55
+	{c5, d5},
+	// 44
+	{c4, d4},
+	// 33
+	{c3, d3},
+	// 22
+	{c2, d2},
+	// AKs - A2s
+	{ca, ck}, {ca, cq}, {ca, cj}, {ca, ct}, {ca, c9}, {ca, c8}, {ca, c7}, {ca, c6}, {ca, c5}, {ca, c4}, {ca, c3}, {ca, c2},
+	// KQs - K2s
+	{ck, cq}, {ck, cj}, {ck, ct}, {ck, c9}, {ck, c8}, {ck, c7}, {ck, c6}, {ck, c5}, {ck, c4}, {ck, c3}, {ck, c2},
+	// QJs - Q2s
+	{cq, cj}, {cq, ct}, {cq, c9}, {cq, c8}, {cq, c7}, {cq, c6}, {cq, c5}, {cq, c4}, {cq, c3}, {cq, c2},
+	// JTs - J5s
+	{cj, ct}, {cj, c9}, {cj, c8}, {cj, c7}, {cj, c6}, {cj, c5},
+	// T9s - T6s
+	{ct, c9}, {ct, c8}, {ct, c7}, {ct, c6},
+	// 98s - 96s
+	{c9, c8}, {c9, c7}, {c9, c6},
+	// 87s - 86s
+	{c8, c7}, {c8, c6},
+	// 76s - 75s
+	{c7, c6}, {c7, c5},
+	// 65s
+	{c6, c5},
+	// 54s
+	{c5, c4},
+}
+
 func newRange(r string) [][]int {
 	switch r {
 	case "utg":
 		return utg_range
 	case "btn":
 		return btn_range
+	case "util":
+		return util_range
 	default:
 		return nil
 	}
@@ -7171,6 +7222,119 @@ func newCards(s string) []int {
 		cards[i] = newCard(s[2*i : 2*(i+1)])
 	}
 	return cards
+}
+
+func toText(cards []int, delemiter string) string {
+	text := ""
+	for _, card := range cards {
+		if card == c2 {
+			text += "c2"
+		} else if card == d2 {
+			text += "d2"
+		} else if card == h2 {
+			text += "h2"
+		} else if card == s2 {
+			text += "s2"
+		} else if card == c3 {
+			text += "c3"
+		} else if card == d3 {
+			text += "d3"
+		} else if card == h3 {
+			text += "h3"
+		} else if card == s3 {
+			text += "s3"
+		} else if card == c4 {
+			text += "c4"
+		} else if card == d4 {
+			text += "d4"
+		} else if card == h4 {
+			text += "h4"
+		} else if card == s4 {
+			text += "s4"
+		} else if card == c5 {
+			text += "c5"
+		} else if card == d5 {
+			text += "d5"
+		} else if card == h5 {
+			text += "h5"
+		} else if card == s5 {
+			text += "s5"
+		} else if card == c6 {
+			text += "c6"
+		} else if card == d6 {
+			text += "d6"
+		} else if card == h6 {
+			text += "h6"
+		} else if card == s6 {
+			text += "s6"
+		} else if card == c7 {
+			text += "c7"
+		} else if card == d7 {
+			text += "d7"
+		} else if card == h7 {
+			text += "h7"
+		} else if card == s7 {
+			text += "s7"
+		} else if card == c8 {
+			text += "c8"
+		} else if card == d8 {
+			text += "d8"
+		} else if card == h8 {
+			text += "h8"
+		} else if card == s8 {
+			text += "s9"
+		} else if card == c9 {
+			text += "c9"
+		} else if card == d9 {
+			text += "d9"
+		} else if card == h9 {
+			text += "h9"
+		} else if card == s9 {
+			text += "s9"
+		} else if card == ct {
+			text += "cT"
+		} else if card == dt {
+			text += "dT"
+		} else if card == ht {
+			text += "hT"
+		} else if card == st {
+			text += "sT"
+		} else if card == cj {
+			text += "cJ"
+		} else if card == dj {
+			text += "dJ"
+		} else if card == hj {
+			text += "hJ"
+		} else if card == sj {
+			text += "sJ"
+		} else if card == cq {
+			text += "cQ"
+		} else if card == dq {
+			text += "dQ"
+		} else if card == hq {
+			text += "hQ"
+		} else if card == sq {
+			text += "sQ"
+		} else if card == ck {
+			text += "cK"
+		} else if card == dk {
+			text += "dK"
+		} else if card == hk {
+			text += "hK"
+		} else if card == sk {
+			text += "sK"
+		} else if card == ca {
+			text += "cA"
+		} else if card == da {
+			text += "dA"
+		} else if card == ha {
+			text += "hA"
+		} else if card == sa {
+			text += "sA"
+		}
+		text += delemiter
+	}
+	return text
 }
 
 func evaluate(cards []int) int {
