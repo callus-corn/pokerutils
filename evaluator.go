@@ -2,8 +2,6 @@ package main
 
 import "math/bits"
 
-var over_nut_low = 7464
-
 // card: rsp
 // r: rank of card
 // s: suit of card
@@ -7340,7 +7338,7 @@ func toText(cards []int, delemiter string) string {
 }
 
 func evaluate(cards []int) int {
-	rank := over_nut_low
+	rank := 7464
 	five_rank := 0
 	for _, index := range indexes {
 		c1 := cards[index[0]]
