@@ -230,16 +230,18 @@ func range_vs_range(ranges []string) error {
 }
 
 func all_check() error {
-	hand := make([]int, 7)
+	//hand := make([]int, 7)
 	deck := newDeck(7)
 
-	s := time.Now()
-	for {
-		if end := deck.nextBoard(hand); end {
-			break
-		}
-		evaluate(hand)
+	seq_board := make([]int, 133784560*7)
 
+	for i := 0; i < len(seq_board); i += 7 {
+		deck.nextBoard(seq_board[i : i+7])
+	}
+
+	s := time.Now()
+	for i := 0; i < len(seq_board); i += 7 {
+		evaluate(seq_board[i : i+7])
 	}
 	println("all check time:", time.Since(s).Seconds())
 
