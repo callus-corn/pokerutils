@@ -230,7 +230,6 @@ func range_vs_range(ranges []string) error {
 }
 
 func all_check() error {
-	//hand := make([]int, 7)
 	deck := newDeck(7)
 
 	seq_board := make([]int, 133784560*7)
