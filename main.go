@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"log/slog"
+	"math/rand"
 	"os"
 	"time"
 )
@@ -237,9 +238,26 @@ func all_check() error {
 		if end := deck.nextBoard(hand); end {
 			break
 		}
-		evaluate7(hand)
+		evaluate(hand)
+
 	}
 	println("all check time:", time.Since(s).Seconds())
+
+	randome_board := make([]int, 100000000*7)
+	for i := range 100000000 {
+		deck = newDeck(1)
+		for j := range 7 {
+			randome_board[i*7+j] = deck.cards[rand.Intn(len(deck.cards))]
+			deck.remove(randome_board[i*7+j])
+		}
+	}
+
+	sr := time.Now()
+	for i := range 100000000 {
+		evaluate(randome_board[i*7 : i*7+7])
+
+	}
+	println("all check time:", time.Since(sr).Seconds())
 
 	return nil
 }
