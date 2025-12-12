@@ -231,9 +231,7 @@ func range_vs_range(ranges []string) error {
 
 func all_check() error {
 	deck := newDeck(7)
-
 	seq_board := make([]int, 133784560*7)
-
 	for i := 0; i < len(seq_board); i += 7 {
 		deck.nextBoard(seq_board[i : i+7])
 	}
