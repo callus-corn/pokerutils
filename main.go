@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"log/slog"
 	"math/rand"
 	"os"
@@ -35,6 +36,8 @@ func main() {
 			logger.Error(err.Error(), "command", command)
 			os.Exit(1)
 		}
+	case "quiz":
+		range_quiz()
 	case "bench":
 		if err := all_check(); err != nil {
 			logger.Error(err.Error(), "command", command)
@@ -105,7 +108,7 @@ func hand_vs_hand(hands []string) error {
 
 func hand_vs_range(hands []string) error {
 	if len(hands) < 3 {
-		return errors.New("usage: hh hand range <board>")
+		return errors.New("usage: hr hand range <board>")
 	}
 	hand1 := newCards(hands[1])
 	target1 := make([]int, 7)
@@ -152,8 +155,8 @@ func hand_vs_range(hands []string) error {
 				target2[i] = v
 			}
 
-			rank1 := evaluate7(target1)
-			rank2 := evaluate7(target2)
+			rank1 := evaluate(target1)
+			rank2 := evaluate(target2)
 
 			if rank1 < rank2 {
 				win++
@@ -168,7 +171,7 @@ func hand_vs_range(hands []string) error {
 
 func range_vs_range(ranges []string) error {
 	if len(ranges) < 3 {
-		return errors.New("usage: hh range range <board>")
+		return errors.New("usage: rr range range <board>")
 	}
 	target1 := make([]int, 7)
 	target2 := make([]int, 7)
@@ -215,8 +218,8 @@ func range_vs_range(ranges []string) error {
 					target2[i] = v
 				}
 
-				rank1 := evaluate7(target1)
-				rank2 := evaluate7(target2)
+				rank1 := evaluate(target1)
+				rank2 := evaluate(target2)
 				if rank1 < rank2 {
 					win++
 				}
@@ -227,6 +230,95 @@ func range_vs_range(ranges []string) error {
 	}
 
 	return nil
+}
+
+func range_quiz() {
+	dummy := newDeck(0)
+	board := make([]int, 5)
+	hand1 := make([]int, 2)
+	for i := range 2 {
+		hand1[i] = dummy.cards[rand.Intn(len(dummy.cards))]
+		dummy.remove(hand1[i])
+	}
+	target1 := make([]int, 7)
+	target1[5] = hand1[0]
+	target1[6] = hand1[1]
+	target2 := make([]int, 7)
+
+	r := newRange("btn")
+	sf := 0
+	fk := 0
+	fh := 0
+	fl := 0
+	st := 0
+	tk := 0
+	tp := 0
+	op := 0
+	hc := 0
+	win := 0
+	count := 0
+	for _, hand2 := range r {
+		target2[5] = hand2[0]
+		target2[6] = hand2[1]
+
+		deck := newDeck(0)
+		for _, card := range hand1 {
+			deck.remove(card)
+		}
+		for _, card := range hand2 {
+			deck.remove(card)
+		}
+		for i := range len(board) {
+			board[i] = deck.cards[rand.Intn(len(deck.cards))]
+			deck.remove(board[i])
+		}
+
+		for i, v := range board {
+			target1[i] = v
+			target2[i] = v
+		}
+
+		rank1 := evaluate(target1)
+		rank2 := evaluate(target2)
+
+		if rank2 <= 10 {
+			sf++
+		} else if rank2 <= 166 {
+			fk++
+		} else if rank2 <= 322 {
+			fh++
+		} else if rank2 <= 1599 {
+			fl++
+		} else if rank2 <= 1609 {
+			st++
+		} else if rank2 <= 2467 {
+			tk++
+		} else if rank2 <= 3325 {
+			tp++
+		} else if rank2 <= 6185 {
+			op++
+		} else if rank2 <= 7463 {
+			hc++
+		} else {
+			println("bug")
+		}
+		if rank1 < rank2 {
+			win++
+		}
+		count++
+	}
+	fmt.Printf(toText(hand1, " ")+toText(board, " ")+"BTN %v comb\n", count)
+	fmt.Printf("%v %%\n", 100*win/count)
+	fmt.Printf("straight flush: %v\n", st)
+	fmt.Printf("four of a kind: %v\n", fk)
+	fmt.Printf("full house: %v\n", fh)
+	fmt.Printf("flush: %v\n", fl)
+	fmt.Printf("straight: %v\n", st)
+	fmt.Printf("three of a kind: %v\n", tk)
+	fmt.Printf("two pair: %v\n", tp)
+	fmt.Printf("one pair: %v\n", op)
+	fmt.Printf("high card: %v\n", hc)
+
 }
 
 func all_check() error {
