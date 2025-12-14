@@ -233,19 +233,22 @@ func range_vs_range(ranges []string) error {
 }
 
 func range_quiz() {
+	btn := newRange("btn")
 	dummy := newDeck(0)
 	board := make([]int, 5)
-	hand1 := make([]int, 2)
+	hand1 := btn[rand.Intn(len(btn))]
 	for i := range 2 {
-		hand1[i] = dummy.cards[rand.Intn(len(dummy.cards))]
 		dummy.remove(hand1[i])
 	}
 	target1 := make([]int, 7)
 	target1[5] = hand1[0]
 	target1[6] = hand1[1]
 	target2 := make([]int, 7)
+	for i := range len(board) {
+		board[i] = dummy.cards[rand.Intn(len(dummy.cards))]
+		dummy.remove(board[i])
+	}
 
-	r := newRange("btn")
 	sf := 0
 	fk := 0
 	fh := 0
@@ -257,7 +260,7 @@ func range_quiz() {
 	hc := 0
 	win := 0
 	count := 0
-	for _, hand2 := range r {
+	for _, hand2 := range btn {
 		target2[5] = hand2[0]
 		target2[6] = hand2[1]
 
@@ -268,9 +271,8 @@ func range_quiz() {
 		for _, card := range hand2 {
 			deck.remove(card)
 		}
-		for i := range len(board) {
-			board[i] = deck.cards[rand.Intn(len(deck.cards))]
-			deck.remove(board[i])
+		for _, card := range board {
+			deck.remove(card)
 		}
 
 		for i, v := range board {
@@ -307,8 +309,8 @@ func range_quiz() {
 		}
 		count++
 	}
-	fmt.Printf(toText(hand1, " ")+toText(board, " ")+"BTN %v comb\n", count)
-	fmt.Printf("%v %%\n", 100*win/count)
+	fmt.Println(toText(board, " "))
+	fmt.Printf(toText(hand1, " ")+": %v %% (%v comb)\n", 100*win/count, win)
 	fmt.Printf("straight flush: %v\n", st)
 	fmt.Printf("four of a kind: %v\n", fk)
 	fmt.Printf("full house: %v\n", fh)
